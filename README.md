@@ -49,12 +49,40 @@ Problems vs. scikit-build-core based example:
 
 ## Installation
 
-Just clone this repository and pip install. Note the `--recursive` option which is
+Clone this repository, build dependencies and pip install. Note the `--recursive` option which is
 needed for the pybind11 submodule:
+
+
+Unix
+```bash
+git clone --recursive https://github.com/pybind/cmake_example.git
+# Build Python
+cd cpython
+sh configure
+
+# Build OpenCv
+make test
+make install
+pip install ./cmake_example
+```
+
+Windows (Requires Visual Studio 2015 build tools). If installed powershell can run:
+
+```
+$VS_BTOOLS_EXE="vs_buildtools.exe"
+$VS_BTOOLS_URI="https://aka.ms/vs/17/release/vs_buildtools.exe"
+Invoke-WebRequest -Uri $VS_BTOOLS_URI -OutFile $VS_BTOOLS_EXE
+Start-Process -FilePath ./vs_BuildTools.exe -ArgumentList `
+     "--add", "Microsoft.VisualStudio.Component.VC.140", `
+     "--quiet", "--norestart", "--force", "--wait" -Wait -PassThru
+```
 
 ```bash
 git clone --recursive https://github.com/pybind/cmake_example.git
-pip install ./cmake_example
+# Build Python
+cd cpython
+PCbuild\get_externals.bat
+PCbuild\build.bat -c Debug
 ```
 
 With the `setup.py` file included in this example, the `pip install` command will
