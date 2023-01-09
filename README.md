@@ -118,3 +118,7 @@ cmake_example.add(1, 2)
 
 [`cibuildwheel`]:    https://cibuildwheel.readthedocs.io
 [scikit-build-core]: https://github.com/scikit-build/scikit-build-core
+
+
+python -m pip install ./python-cmake-cpp
+python setup.py bdist_wheel
